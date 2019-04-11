@@ -152,7 +152,7 @@ chrome.contextMenus.onClicked.addListener(function(event) {
       break;
     case "cfpurgeclient_tag":
       if(selected_text) {
-        contextMenuPurge({type: 'url', target: selected_text});
+        contextMenuPurge({type: 'tag', target: selected_text});
       } else {
         alert("Please select a Tag");
         return;
