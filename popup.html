@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css/tagify.css">
+    <link rel="stylesheet" type="text/css" href="css/icon.min.css">
+    <link rel="stylesheet" type="text/css" href="css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <title>Cloudflare Purge Client</title>
+  </head>
+  <body>
+    <div class="my_container">
+
+      <!-- loader -->
+      <div id="loader" class="ui disabled inverted dimmer">
+        <div class="ui text loader">Please wait..</div>
+      </div>
+
+      <!-- main_page -->
+      <div id="main_page">
+
+        <div class="ui items unstackable" style="margin-bottom: 0px;">
+          <div class="item">
+            <a class="ui tiny image" style="padding: 0px 10px 0px 10px; text-align:center;">
+              <img id="logoimg" class="main_logo" src="img/logo.png">
+              <div id="client_version" class="ui tiny label version basic"></div>
+            </a>
+            <div class="middle aligned active content small" style="padding: 30px 10px 10px 5px;"></div>
+          </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div id="main_notification_area"></div>
+
+        <div class="ui middle aligned selection list relaxed small">
+          <div id="purge_by_url" class="item main_item">
+            <i class="linkify icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Purge by URL</div>
+            </div>
+          </div>
+          <div id="purge_by_host" class="item main_item">
+            <i class="server icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Hostname Purge
+                <a class="ui basic label mini orange float_label_right">Enterprise Only</a>
+              </div>
+            </div>
+          </div>
+          <div id="purge_by_tag" class="item main_item">
+            <i class="tags icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Tag Purge
+                <a class="ui basic label mini orange float_label_right">Enterprise Only</a>
+              </div>
+            </div>
+          </div>
+          <div id="purge_json" class="item main_item">
+            <i class="code icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Purge Json Input</div>
+            </div>
+          </div>
+          <div id="purge_custom" class="item main_item">
+            <i class="cogs icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Custom Cache Key Purge
+                <a class="ui basic label mini orange float_label_right">Enterprise Only</a>
+              </div>
+            </div>
+          </div>
+          <div id="purge_all" class="item main_item">
+            <i class="eraser icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Purge Everything</div>
+            </div>
+          </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui middle aligned selection list relaxed small">
+          <div id="manage_key" class="item main_item">
+            <i class="key icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Manage API Keys</div>
+            </div>
+          </div>
+          <div id="view_purge_logs" class="item main_item">
+            <i class="archive icon middle aligned"></i>
+            <div class="content">
+              <div class="description">Purge Logs</div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <div id="display_page" style="display: none;">
+        <button class="ui icon button backbutton small">
+          <i class="chevron left icon"></i>
+        </button>
+        <div id="active_key_indicator" class="ui label basic large"></div>
+        <div id="display_top_area"></div>
+        <div class="ui divider"></div>
+        <div id="notification_area"></div>
+        <div id="display_area"></div>
+      </div>
+
+    </div> <!-- my_container -->
+    <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.tagify.min.js"></script>
+    <script type="text/javascript" src="lib/pagination.min.js"></script>
+    <script type="text/javascript" src="lib/semantic.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+  </body>
+</html>

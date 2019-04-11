@@ -1,0 +1,196 @@
+/* main container */
+.my_container {
+  padding: 10px;
+  width: 320px;
+  height: 490px;
+  overflow: auto;
+}
+
+/* main logo */
+.main_logo {
+}
+
+/* pre json */
+.msg_code {
+  font-size: 13px !important;
+  padding: 10px !important;
+}
+
+.pre_code {
+  overflow: auto !important;
+}
+
+/* version */ 
+.version {
+  padding: 4px !important;
+  margin: 0px !important;
+}
+
+/* active_key_indicator */
+#active_key_indicator {
+  width: 70%;
+  vertical-align: middle;
+  border-width: 0px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: auto;
+  padding: 2px 3px 2px 0px;
+  color: rgba(242, 133, 26);
+  margin-left: 0px;
+}
+
+#active_key_indicator div.description {
+  color: rgba(0, 0, 0, 0.4);
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  height: 0px !important;            
+  width: 3px !important;              
+  /* border: 0px solid white !important; */
+}
+
+/* label for purge log */
+.label_purge_log {
+  padding: 4px !important;
+  text-align: right;
+}
+
+/* main page list */
+.main_item {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.float_label_right {
+  float: right;
+  padding:3px !important;
+}
+
+/* Fixed menu on top */
+#display_top_area {
+  float: right;
+}
+
+/* Notification */
+#notification_area {
+  margin-bottom: 10px;
+}
+
+/* manage key list */
+#key_list .content {
+  word-break: break-all;
+  width: 220px;
+}
+#key_list img {
+  vertical-align: top !important;
+}
+
+/* log list */
+#log_list .content {
+  word-break: break-all;
+  width: 180px;
+}
+#log_list img {
+  vertical-align: top !important;
+}
+
+/* active key */
+.active {
+  word-break: break-all;
+}
+
+/* message list ul li */
+.list li:before {
+  content: '-' !important;
+}
+
+/* inline label */ 
+.inline_label {
+  padding: 2px !important;
+  margin-left: 3px !important;
+  margin-right: 3px !important;
+}
+
+/* custom cache key header input */
+#custom_header_form div.fields {
+  margin-bottom: 10px;
+}
+.field_header {
+  width: 35% !important;
+  padding-right: 0px !important;
+}
+.field_value {
+  width: 55% !important;
+}
+.remove_header {
+  padding: 3px !important;
+}
+.remove_header_field {
+  padding: 0px !important;
+  padding-top: 6px !important;
+}
+.add_header {
+  text-align: right;
+}
+
+/* pagination footer */
+.pagi-footer {
+  /* position: fixed; */
+  width: 100%;
+  bottom: 15px;
+  right: 0px;
+  left: 0px;
+  padding: 10px;
+}
+
+/* In key-list page, power button */
+#display_area .buttons.circle {
+  border-radius: 10rem !important;
+}
+#display_area .ui.button.circle {
+  border-radius: 10rem !important;
+}
+#display_area .ui.button.circle:focus {
+  box-shadow: none;
+}
+
+/* custom divider */ 
+.divider {
+ margin-top: 30px;
+ margin-bottom: 30px;
+}
+
+/* tagify */
+.tagify {
+  border-radius: 4px;
+}
+.tagify tag {
+  margin: 3px;
+}
+.tagify--outside{
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.tagify__input--outside::before {
+  top: 6px;
+}
+.tagify__input--outside {
+  display: block;
+  max-width: 600px;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  height: 40px;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  margin: 0em;
+  padding: 9.5px;
+}
+.tagify tag div span {
+  word-break: break-all;
+  white-space: normal !important;
+}
