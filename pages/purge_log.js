@@ -4,14 +4,20 @@ var purgeLogPage = (function(global) {
   function viewRawPurgeLog(reqid, callback) {
     var html = '';
     var html2 = ''
-    purge.getPurgeLog(reqid).then(function(log) {
-      let purge_response = log.response;
+    purge.getPurgeLog(reqid).then(function(log) { let purge_response = log.response;
       let purge_result = purge_response.server_responded === true ? JSON.parse(purge_response.response_text) : purge_response.response_text;
+      if ($.isEmptyObject(purge_response.response_headers)) {
+        var ray_id = "Could not find cf-ray header in response";
+        var response_headers = {};
+      } else {
+        var response_headers = purge_response.response_headers;
+        var ray_id = response_headers["cf-ray"];
+      }
       var purge_result_txt = typeof purge_result === "object" ? JSON.stringify(purge_result, null, 2) : purge_result;
       let key = encdec.decrypt(log.used_key);
 
       html += '<div class="ui label small">API Request</div>';
-      html += '<div class="ui list small middle aligned">';
+      html += '<div class="ui list small middle aligned selection">';
       html += '  <a class="item">';
       html += '    <i class="right triangle icon"></i>';
       html += '    <div class="content">';
@@ -47,6 +53,11 @@ var purgeLogPage = (function(global) {
       html += '<pre class="pre_code">' + log.url + '</pre>';
       html += '</div>';
 
+      html += '<div class="ui label small red">Ray ID</div>';
+      html += '<div class="ui message msg_code">';
+      html += '<pre class="pre_code">' + ray_id + '</pre>';
+      html += '</div>';
+
       html += '<div class="ui label small purple">Response Body</div>';
       html += '<div class="ui message msg_code">';
       html += '<pre class="pre_code">' + purge_result_txt + '</pre>';
@@ -55,6 +66,11 @@ var purgeLogPage = (function(global) {
       html += '<div class="ui label small teal">Request Body</div>';
       html += '<div class="ui message msg_code">';
       html += '<pre class="pre_code">' + JSON.stringify(JSON.parse(log.requested_body), null, 2) + '</pre>';
+      html += '</div>';
+
+      html += '<div class="ui label small brown">Response Headers</div>';
+      html += '<div class="ui message msg_code">';
+      html += '<pre class="pre_code">' + JSON.stringify(response_headers, null, 2) + '</pre>';
       html += '</div>';
 
       html += '<div class="ui label small blue">API Key</div>';

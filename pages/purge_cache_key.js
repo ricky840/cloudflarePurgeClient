@@ -5,7 +5,7 @@ var purgeCacheKey = (function(global) {
     return new Promise(function(resolve, reject) {
       var html = '';
       var tophtml = '<button id="purge_cache_key_button" class="ui button icon orange small" data-tooltip="Purge" data-position="bottom right">';
-      tophtml += '<i class="cog icon"></i></button>';
+      tophtml += '<i class="trash icon"></i></button>';
 
       html += '<div class="ui message small">'; 
       html += '<ul class="list">';

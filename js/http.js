@@ -13,10 +13,16 @@ var http = (function(global) {
         data: JSON.stringify(request.data),
         headers: request.headers,
         success: function(response, status, xhr) { 
-          resolve(xhr.responseText);
+          resolve({
+            responseText: (xhr.responseText) ? xhr.responseText : "",
+            responseHeaders: xhr.getAllResponseHeaders().trim()
+          });
         },
         error: function(xhr, status, error) {
-          reject(new Error(xhr.responseText));
+          reject({
+            responseText: (xhr.responseText) ? xhr.responseText : "",
+            responseHeaders: xhr.getAllResponseHeaders().trim()
+          });
         },
         complete: function (xhr, status) {
           // console.log(status);

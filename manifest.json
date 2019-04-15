@@ -1,6 +1,6 @@
 {
   "name": "Cloudflare Purge Client",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "Delete cache objects from Cloudflare network",
   "manifest_version": 2,
   "background": {

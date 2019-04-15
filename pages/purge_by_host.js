@@ -4,7 +4,7 @@ var purgeByHost = (function(global) {
   function loadHostPurge(callback) {
     return new Promise(function(resolve, reject) {
       var tophtml = '<button id="purge_host_button" class="ui button icon small orange" data-tooltip="Purge" data-position="bottom right">';
-      tophtml += '<i class="cog icon"></i></button>';
+      tophtml += '<i class="trash icon"></i></button>';
       var html = '';
 
       html += '<div class="ui message small">';

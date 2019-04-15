@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 var purge = (function(global) {
   'use strict';
 
-  function didServerResponded(string) {
+  function didServerRespond(string) {
     try {
       JSON.parse(string);
     } catch (err) {
@@ -135,19 +135,38 @@ var purge = (function(global) {
         savePurgeLog(request, newResponseObj(request.reqid, result)).then(function(newlog) {
           resolve(JSON.stringify(newlog));
         });
-      }).catch(function(err) {
-        savePurgeLog(request, newResponseObj(request.reqid, err.message)).then(function(newlog) {
+      }).catch(function(err_msg) {
+        savePurgeLog(request, newResponseObj(request.reqid, err_msg)).then(function(newlog) {
           reject(new Error(JSON.stringify(newlog)));
         });
       });
     });
   }
 
+  function createResponseHeaderObj(response_headers) {
+    let headers = {};
+    try {
+      var split = response_headers.split(/[\r\n]+/);
+      var map_split = split.map(value => value.split(/:/));
+      map_split.forEach(each => {
+        headers[each[0].trim().toLowerCase()] = each[1].trim();
+      });
+    } catch (err) {
+      return headers;
+    }
+    debugOutput({text: "response_headers", data: headers});
+    return headers;
+  }
+
   function newResponseObj(reqid, result) {
+    let raw_response_text = result.responseText;
+    let raw_response_headers = result.responseHeaders;
+    let response_headers = createResponseHeaderObj(raw_response_headers);
     return {
       reqid: reqid,
-      response_text: result,
-      server_responded: didServerResponded(result)
+      response_text: raw_response_text,
+      server_responded: didServerRespond(raw_response_text),
+      response_headers: response_headers
     }
   }
 

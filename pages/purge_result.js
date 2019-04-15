@@ -5,6 +5,7 @@ var purgeResultPage = (function(global) {
     let purgelog = JSON.parse(purgelogTxt);
     let purge_response = purgelog.response;
     let purge_result = purge_response.server_responded === true ? JSON.parse(purge_response.response_text) : purge_response.response_text;
+    let ray_id = ($.isEmptyObject(purge_response.response_headers)) ? "Ray-ID was not found" : purge_response.response_headers["cf-ray"];
     var html = '';
     var html2 = '<button id="see_purge_log" class="ui orange button small icon" data-tooltip="Log" data-position="bottom right" reqid="'+ purgelog.logid +'">';
     html2 += '<i class="archive icon"></i></button>';
@@ -18,6 +19,11 @@ var purgeResultPage = (function(global) {
           html += '<div class="header">Purge Success</div>';
           html += '<p>Successfully purged the objects.</p>';
           html += '</div>';
+          html += '</div>';
+
+          html += '<div class="ui message small">';
+          html += '<div class="header">Ray ID</div>';
+          html += '<p>'+ ray_id +'</p>';
           html += '</div>';
 
           html += '<div class="ui message small">';
@@ -63,6 +69,10 @@ var purgeResultPage = (function(global) {
           html += '<p>Check error messages and try again!</p>';
           html += '</div>';
           html += '</div>';
+          html += '<div class="ui message small">';
+          html += '<div class="header">Ray ID</div>';
+          html += '<p>'+ ray_id +'</p>';
+          html += '</div>';
           html += '<div class="ui relaxed list small">';
           html += itemhtml;
           html += '</div>';
@@ -72,17 +82,12 @@ var purgeResultPage = (function(global) {
       }
     } else { // purge failed - didn't get response from api server
       html += '<div id="purge_result_page" class="ui icon negative message">';
-      html += '<i class="far fa-thumbs-down fa-4x"></i>'
-      html += '<div class="content" style="margin-left: 10px;">';
+      html += '<i class="exclamation circle icon"></i>';
+      html += '<div class="content">';
       html += '<div class="header">Purge Failed</div>';
+      html += '<p>No response returned. Are you connected to the internet?</p>';
       html += '</div>';
       html += '</div>';
-      if (purge_result == "") {
-        html += '<div class="ui message">';
-        html += '<div class="header">No response returned</div>';
-        html += '<p>Please make sure you are connected to the internet!</p>';
-        html += '</div>';
-      }
     }
     callback({html: html, tophtml: html2});
   }
