@@ -83,20 +83,7 @@ var contextMenuPurge = function(request) {
   });
 }
 
-// Fire when ext installed
-chrome.runtime.onInstalled.addListener(function(event) {
-  initStorage(); 
-  initBackPage();
-  if (event.reason === 'install') {
-    chrome.storage.local.set({notice_installed: true, notice_updated: false}, function() {
-      debugOutput({text: "Extension Installed"});
-    });
-  }
-  if (event.reason === 'update') {
-    chrome.storage.local.set({notice_updated: true, notice_installed: false}, function() {
-      debugOutput({text: "Extension Updated"});
-    })
-  }
+var createContextMenu = function() {
   chrome.contextMenus.create({
     "id": "cfpurgeclient",
     "title": "Cloudflare Purge Client", 
@@ -114,12 +101,30 @@ chrome.runtime.onInstalled.addListener(function(event) {
     "parentId": "cfpurgeclient",
     "contexts":["all"]
   });
+}
+
+// Fire when ext installed
+chrome.runtime.onInstalled.addListener(function(event) {
+  initStorage();
+  initBackPage();
+  createContextMenu();
+  if (event.reason === 'install') {
+    chrome.storage.local.set({notice_installed: true, notice_updated: false}, function() {
+      debugOutput({text: "Extension Installed"});
+    });
+  }
+  if (event.reason === 'update') {
+    chrome.storage.local.set({notice_updated: true, notice_installed: false}, function() {
+      debugOutput({text: "Extension Updated"});
+    })
+  }
 });
 
 // Fires when Chrome starts or when user clicks refresh button in extension page
 chrome.runtime.onStartup.addListener(function() {
-  initStorage(); 
+  initStorage();
   initBackPage();
+  createContextMenu();
 });
 
 // Fires when user clicks disable / enable button in extension page
